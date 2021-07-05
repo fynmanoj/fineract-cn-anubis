@@ -29,7 +29,8 @@ import java.lang.annotation.*;
 @Import({
     AnubisConfiguration.class,
     AnubisImportSelector.class,
-    AnubisSecurityConfigurerAdapter.class
+    AnubisSecurityConfigurerAdapter.class,
+        FinKeycloakSecurityConfigurerAdapter.class
 })
 public @interface EnableAnubis {
   boolean provideSignatureRestController() default true;

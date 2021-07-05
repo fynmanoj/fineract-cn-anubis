@@ -36,7 +36,7 @@ public class UrlPermissionChecker implements AccessDecisionVoter<FilterInvocatio
   private final Logger logger;
   private final ApplicationName applicationName;
 
-  public UrlPermissionChecker(final Logger logger, final ApplicationName applicationName) {
+  public  UrlPermissionChecker(final Logger logger, final ApplicationName applicationName) {
     this.logger = logger;
     this.applicationName = applicationName;
   }

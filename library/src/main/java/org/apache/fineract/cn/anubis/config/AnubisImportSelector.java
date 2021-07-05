@@ -25,10 +25,7 @@ import org.apache.fineract.cn.anubis.controller.SignatureRestController;
 import org.apache.fineract.cn.anubis.provider.SystemRsaKeyProvider;
 import org.apache.fineract.cn.anubis.provider.TenantRsaKeyProvider;
 import org.apache.fineract.cn.anubis.repository.TenantAuthorizationDataRepository;
-import org.apache.fineract.cn.anubis.security.GuestAuthenticator;
-import org.apache.fineract.cn.anubis.security.IsisAuthenticatedAuthenticationProvider;
-import org.apache.fineract.cn.anubis.security.SystemAuthenticator;
-import org.apache.fineract.cn.anubis.security.TenantAuthenticator;
+import org.apache.fineract.cn.anubis.security.*;
 import org.apache.fineract.cn.anubis.service.PermittableService;
 import org.apache.fineract.cn.anubis.token.SystemAccessTokenSerializer;
 import org.apache.fineract.cn.anubis.token.TenantAccessTokenSerializer;
@@ -61,6 +58,9 @@ class AnubisImportSelector implements ImportSelector {
 
     classesToImport.add(PermittableRestController.class);
     classesToImport.add(PermittableService.class);
+
+    classesToImport.add(FinKeycloakAuthenticationProvider.class);
+    classesToImport.add(FinKeycloakTenantAuthenticator.class);
 
     final boolean provideSignatureRestController = (boolean)importingClassMetadata
             .getAnnotationAttributes(EnableAnubis.class.getTypeName())

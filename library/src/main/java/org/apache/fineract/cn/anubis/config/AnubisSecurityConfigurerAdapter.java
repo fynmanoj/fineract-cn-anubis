@@ -28,9 +28,11 @@ import org.apache.http.HttpStatus;
 import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.annotation.Order;
 import org.springframework.security.access.AccessDecisionManager;
 import org.springframework.security.access.AccessDecisionVoter;
 import org.springframework.security.access.vote.UnanimousBased;
@@ -55,6 +57,7 @@ import java.util.List;
 @SuppressWarnings("WeakerAccess")
 @Configuration
 @EnableWebSecurity
+@ConditionalOnProperty("authentication.service.anubis")
 public class AnubisSecurityConfigurerAdapter extends WebSecurityConfigurerAdapter {
   final private Logger logger;
   final private ApplicationName applicationName;
@@ -98,8 +101,7 @@ public class AnubisSecurityConfigurerAdapter extends WebSecurityConfigurerAdapte
 
   private AccessDecisionManager defaultAccessDecisionManager() {
     final List<AccessDecisionVoter<?>> voters = new ArrayList<>();
-    voters.add(new UrlPermissionChecker(logger, applicationName));
-    return new UnanimousBased(voters);
+    voters.add(new UrlPermissionChecker(logger, applicationName));return new UnanimousBased(voters);
   }
 
   @Override
